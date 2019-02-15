@@ -1,11 +1,16 @@
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TTransport
 
-from dow_jones_index_thrift.ttypes import DowJonesIndex, DowJonesOutput
+from dow_jones_index_thrift.ttypes import DowJonesIndex, DowJonesResult, DowJonesOutput
 
 class DowJonesThrift():
     def __init__(self):
+        self.thrift_result=None
+        #First level
         self.thrift_result=DowJonesOutput()
+        #second level
+        self.result=DowJonesResult()
+        self.result.dowjonesresponse = []
 
     def create_thrift_message(self,row):
         msg = DowJonesIndex()
@@ -27,7 +32,7 @@ class DowJonesThrift():
         msg.percent_return_next_dividend = row['percent_return_next_dividend']
 
         print("message constructed")
-        self.thrift_result.append(msg)
+        self.result.dowjonesresponse.append(msg)
 
     def serialize_message(self):
         thrift_out = TTransport.TMemoryBuffer()

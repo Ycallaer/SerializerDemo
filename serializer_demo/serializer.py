@@ -6,5 +6,9 @@ def main():
     thriftify = DowJonesThrift()
     dow_jones_data.apply(thriftify.create_thrift_message,axis=1)
 
+    result = thriftify.serialize_message()
+
+    print(result)
+
 if __name__=="__main__":
     main()
