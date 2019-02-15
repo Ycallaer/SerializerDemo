@@ -5,7 +5,7 @@ from dow_jones_index_thrift.ttypes import DowJonesIndex, DowJonesOutput
 
 class DowJonesThrift():
     def __init__(self):
-        DowJonesOutput=[]
+        self.thrift_result=DowJonesOutput()
 
     def create_thrift_message(self,row):
         msg = DowJonesIndex()
@@ -15,13 +15,22 @@ class DowJonesThrift():
         msg.open = row['open']
         msg.high = row['high']
         msg.low = row['low']
-        msg.quarter = row['quarter']
-        msg.quarter = row['quarter']
-        msg.quarter = row['quarter']
+        msg.close = row['close']
+        msg.volume = row['volume']
+        msg.percent_change_price = row['percent_change_price']
+        msg.percent_change_volume_over_last_wk = row['percent_change_volume_over_last_wk']
+        msg.previous_weeks_volume = row['previous_weeks_volume']
+        msg.next_weeks_open = row['next_weeks_open']
+        msg.next_weeks_close = row['next_weeks_close']
+        msg.percent_change_next_weeks_price = row['percent_change_next_weeks_price']
+        msg.days_to_next_dividend = row['days_to_next_dividend']
+        msg.percent_return_next_dividend = row['percent_return_next_dividend']
 
-        print("go")
-    def serialize_message(self, thrift_msg):
+        print("message constructed")
+        self.thrift_result.append(msg)
+
+    def serialize_message(self):
         thrift_out = TTransport.TMemoryBuffer()
         protocol_out = TBinaryProtocol.TBinaryProtocol(thrift_out)
-        thrift_msg.write(protocol_out)
+        self.thrift_result.write(protocol_out)
         return thrift_out.getvalue()
