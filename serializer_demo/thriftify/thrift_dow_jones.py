@@ -31,7 +31,6 @@ class DowJonesThrift():
         msg.days_to_next_dividend = row['days_to_next_dividend']
         msg.percent_return_next_dividend = row['percent_return_next_dividend']
 
-        print("message constructed")
         self.result.dowjonesresponse.append(msg)
 
     def serialize_message(self):
