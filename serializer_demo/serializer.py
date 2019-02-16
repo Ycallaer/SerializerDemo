@@ -12,9 +12,7 @@ def main_thrift(pd_df):
     thriftify = DowJonesThrift()
     pd_df.apply(thriftify.create_thrift_message,axis=1)
     result = thriftify.serialize_message()
-
-    with open('resources/thrift.out','wb') as f:
-        f.write(result)
+    print(result)
 
 if __name__=="__main__":
     dow_jones_data = pandas.read_csv(filepath_or_buffer="resources/dow_jones_index.data", sep=',')
