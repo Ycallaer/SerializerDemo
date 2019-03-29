@@ -28,6 +28,6 @@ def main_protobuf(pd_df):
 
 if __name__=="__main__":
     dow_jones_data = pandas.read_csv(filepath_or_buffer="resources/dow_jones_index.data", sep=',')
-    #print(main_thrift(dow_jones_data))
-    #print(main_pickle(dow_jones_data))
+    print(main_thrift(dow_jones_data))
+    print(main_pickle(dow_jones_data))
     print(main_protobuf(dow_jones_data))
