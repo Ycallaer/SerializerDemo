@@ -15,7 +15,6 @@ def main_thrift(pd_df):
     thriftify = DowJonesThrift()
     pd_df.apply(thriftify.create_thrift_message,axis=1)
     result = thriftify.serialize_message()
-    print(result)
 
 
 @timing
@@ -23,7 +22,6 @@ def main_protobuf(pd_df):
     protobuf = DownJonesProto()
     pd_df.apply(protobuf.create_proto_msg, axis=1)
     result = protobuf.create_result()
-    print(result)
 
 
 if __name__=="__main__":
