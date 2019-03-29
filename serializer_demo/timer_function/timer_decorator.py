@@ -8,6 +8,6 @@ def timing(f):
         start = time()
         result = f(*args, **kwargs)
         end = time()
-        print('Elapsed time: {}'.format(end-start))
+        print('Function {}, Elapsed time: {}'.format(f.__name__,end-start))
         return result
     return wrapper
