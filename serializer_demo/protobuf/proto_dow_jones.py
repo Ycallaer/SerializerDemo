@@ -29,4 +29,4 @@ class DownJonesProto():
 
     def create_result(self):
         self.result.downjonesresponse.extend(self.messages)
-        return self.result
+        return self.result.SerializeToString()
